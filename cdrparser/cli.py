@@ -4,6 +4,9 @@ import click
 from cdrparser.main import convert_cdr
 from cdrparser.writers import XlsxWriter
 
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
+
 
 @click.command()
 @click.argument('cdr_csv', type=click.Path(exists=True))
@@ -18,6 +21,4 @@ def main(cdr_csv, output, criteria):
 
 
 if __name__ == '__main__':
-    logging.basicConfig(level=logging.DEBUG)
-    logger = logging.getLogger(__name__)
     main()
