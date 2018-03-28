@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
 from xlsxwriter import Workbook
 
+from cdrparser.utils import epoch_date, epoch_time
 from .writer import Writer
 
 
@@ -30,8 +31,8 @@ class XlsxWriter(Writer):
         self.workbook.close()
 
     def write(self, item, row):
-        self.worksheet.write(row + 1, 0, datetime.fromtimestamp(item.datetime_placed).date(), self._format_date)
-        self.worksheet.write(row + 1, 1, datetime.fromtimestamp(item.datetime_placed).time(), self._format_time)
+        self.worksheet.write(row + 1, 0, epoch_date(item.datetime_placed), self._format_date)
+        self.worksheet.write(row + 1, 1, epoch_time(item.datetime_placed), self._format_time)
 
         self.worksheet.write(row + 1, 2, item.calling_party)
         self.worksheet.write(row + 1, 3, item.called_party)
@@ -39,11 +40,11 @@ class XlsxWriter(Writer):
         self.worksheet.write(row + 1, 5, timedelta(seconds=item.duration), self._format_duration)
 
         if item.datetime_connected != 0:
-            self.worksheet.write(row + 1, 6, datetime.fromtimestamp(item.datetime_connected).time(), self._format_time)
+            self.worksheet.write(row + 1, 6, epoch_time(item.datetime_connected), self._format_time)
         else:
             self.worksheet.write(row + 1, 6, 'N/A')
 
-        self.worksheet.write(row + 1, 7, datetime.fromtimestamp(item.datetime_disconnected).time(), self._format_time)
+        self.worksheet.write(row + 1, 7, epoch_time(item.datetime_disconnected), self._format_time)
 
         call_type = 'Simple' if item.called_party == item.reached_party else 'Forwarded'
         self.worksheet.write(row + 1, 8, call_type)
