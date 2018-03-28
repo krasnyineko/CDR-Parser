@@ -17,7 +17,7 @@ CallRecord = namedtuple('CallRecord', [
     'datetime_placed'
 ])
 
-
+# https://www.cisco.com/c/en/us/td/docs/voice_ip_comm/cucm/service/8_5_1/cdrdef/cdradmin/cdrfdes.html
 def get_call_records(filename: str, criteria: list):
     """
     Retrieves records matching criteria
