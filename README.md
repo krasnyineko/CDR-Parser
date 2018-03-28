@@ -1,5 +1,6 @@
-#CDR Parser
+# CDR Parser
 
-##TODO
+## TODO
 
 - [ ] add tests
+- [ ] add gui
