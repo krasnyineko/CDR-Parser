@@ -2,8 +2,6 @@ import csv
 import logging
 from collections import namedtuple
 
-import click
-
 from cdrparser.writers import XlsxWriter
 
 logger = logging.getLogger(__name__)
@@ -33,12 +31,12 @@ def get_call_records(filename: str, criteria: list):
         reader = csv.DictReader(file)
 
         if criteria:
-            logger.info(f'Searching for the following ext(s). {criteria}')
+            logger.info(f'Searching for the following ext(s) {criteria}')
         else:
             logger.info('No criteria specified. Parsing all entries')
+        logger.info('Parsing file. This may take a while...')
 
         for row in reader:
-
             if criteria:
                 if not any(ext in criteria for ext in (
                         row['callingPartyNumber'], row['originalCalledPartyNumber'], row['finalCalledPartyNumber'])):
@@ -61,22 +59,6 @@ def get_call_records(filename: str, criteria: list):
 
 def convert_cdr(cdr_filename: str, output_path: str, writer, criteria: list = None):
     with writer(output_path) as writer:
+        logger.info(f'Writing to {output_path}')
         for i, call_record in enumerate(get_call_records(cdr_filename, criteria)):
             writer.write(call_record, i)
-
-
-@click.command()
-@click.argument('cdr_csv', type=click.Path(exists=True))
-@click.option('--output', '-o', default=None)
-@click.argument('criteria', nargs=-1)
-def main(cdr_csv, output, criteria):
-    if output is None:
-        import time
-        output = time.strftime('%Y-%m-%d_%H%M%S.xlsx')
-
-    convert_cdr(cdr_csv, output, XlsxWriter, criteria)
-
-
-if __name__ == '__main__':
-    main()
-
