@@ -3,7 +3,7 @@
 Cli application to parse Cisco cdr records into xlsx worksheets.
 
 
-The program parses and output a small subset of columns. Currently it only supports the follwoing
+The program parses and output a small subset of columns. It also supports exporting to csv. Currently it only supports the following columns.
 
 ```python
 ['gcid',
@@ -31,8 +31,8 @@ Usage: cdrparser [OPTIONS] CDR_CSV [CRITERIA]...
 
 Options:
   -o, --output TEXT
-  --help             Show this message and exit.
-
+  -f, --format [xlsx|csv]
+  --help                   Show this message and exit.
 ```
 
 #### Examples
@@ -41,6 +41,12 @@ Parse with no filter and output to parsed.xlsx
 
 ```bash
 cdrparser -o parsed.xlsx cdr_records.csv
+```
+
+Parse and output a csv file instead of xlsx. Defaults to xlsx if format is not specified.
+
+```bash
+cdrparser cdr_records.csv -f csv
 ```
 
 Parse and save only records that contain the phone numbers specified
