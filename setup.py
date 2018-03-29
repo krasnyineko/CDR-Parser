@@ -1,5 +1,6 @@
 from setuptools import setup
 
+
 setup(
     name='cdrparser',
     version='1.0.0',
@@ -13,5 +14,6 @@ setup(
         'console_scripts': [
             'cdrparser = cdrparser.cli:main'
         ]
-    }
+    },
+    install_requires=['click', 'xlsxwriter']
 )
