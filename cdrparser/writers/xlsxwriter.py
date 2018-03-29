@@ -46,6 +46,6 @@ class XlsxWriter(Writer):
 
         self.worksheet.write(row + 1, 7, epoch_time(item.datetime_disconnected), self._format_time)
 
-        call_type = 'Simple' if item.called_party == item.reached_party else 'Forwarded'
+        call_type = 'Simple' if item.called_party == item.reached_party else 'Forward'
         self.worksheet.write(row + 1, 8, call_type)
         self.worksheet.write(row + 1, 9, item.gcid)
