@@ -20,7 +20,7 @@ The program parses and output a small subset of columns. Currently it only suppo
 
 ### Installing
 
-Clone the stable branch and install using either pip or setup.py
+Clone the [stable](https://github.com/krasnyineko/CDR-Parser/tree/stable) branch and install using either pip or setup.py
 
 ### Running
 
