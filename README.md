@@ -58,10 +58,11 @@ cdrparser cdr_records.csv 9998887777 7899 5678
 
 ## TODO
 
-* [ ] Add CSV writer
-* [ ] Add Tests
-* [ ] Improve filtering to apply to all columns
-* [ ] Allow specification of which columns to output
+- [x] Add CSV writer
+- [ ] Add tests
+- [ ] Improve filtering to apply to all columns
+- [ ] Allow specification of which columns to output
+
 
 
 ## Versioning
