@@ -3,7 +3,7 @@ from setuptools import setup
 
 setup(
     name='cdrparser',
-    version='1.1.1',
+    version='1.2.0',
     packages=['cdrparser', 'cdrparser.writers'],
     url='',
     license='',
