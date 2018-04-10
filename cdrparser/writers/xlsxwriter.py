@@ -26,6 +26,7 @@ class XlsxWriter(Writer):
         self.worksheet.write('I1', 'Call Type', _format_header)
         self.worksheet.write('J1', 'Call ID', _format_header)
         self.worksheet.set_column(0, 8, 18)
+        self.worksheet.freeze_panes(1, 0)
 
     def close(self):
         self.workbook.close()
